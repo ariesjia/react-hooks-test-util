@@ -1,0 +1,42 @@
+{
+  "name": "hooks-test-util",
+  "version": "0.0.1",
+  "description": "",
+  "main": "lib/index.js",
+  "typings": "lib/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest --config test/unit/jest.conf.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ariesjia/hooks-test-util.git"
+  },
+  "author": "Jia Chen <ariesjia00@hotmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ariesjia/hooks-test-util/issues"
+  },
+  "homepage": "https://github.com/ariesjia/hooks-test-util#readme",
+  "peerDependencies": {
+    "react": "^16.8.0",
+    "react-dom": "^16.8.0",
+    "react-testing-library": "^5.9.0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@babel/core": "^7.3.4",
+    "@types/jest": "^24.0.6",
+    "@types/react": "^16.8.0",
+    "babel-loader": "^8.0.5",
+    "jest": "^24.1.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
+    "react-testing-library": "^7.0.0",
+    "rimraf": "^2.6.2",
+    "ts-jest": "^24.0.0",
+    "ts-loader": "5.3.3",
+    "ts-node": "7.0.1",
+    "typescript": "^3.2.2"
+  }
+}

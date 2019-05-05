@@ -26,9 +26,9 @@ const testHook = function(text) {
 
 ### test
 ```javascript
-import renderHooks, { act } from 'hooks-test-util'
+import render, { act } from 'hooks-test-util'
 
-const { container } = renderHooks(
+const { container } = render(
   () => testHook('hello')
 )
 expect(container.hook.text).toEqual('hello')

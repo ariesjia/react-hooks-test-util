@@ -1,5 +1,5 @@
 import * as React from "react";
-import renderHooks, { act } from '../index'
+import render, { act } from '../index'
 import { useState } from "react";
 
 
@@ -20,14 +20,14 @@ describe("util test", () => {
   })
 
   it('should get hook value', () => {
-    const { container } = renderHooks(
+    const { container } = render(
       () => testHook('hello')
     )
     expect(container.hook.text).toEqual('hello')
   })
 
   it('should get hook value when trigger state change', () => {
-    const { container } = renderHooks(
+    const { container } = render(
       () => testHook('hello')
     )
     act(() => {
@@ -37,7 +37,7 @@ describe("util test", () => {
   })
 
   it('should get initial value when rerender component', () => {
-    const { container, rerender } = renderHooks(
+    const { container, rerender } = render(
       () => testHook('hello')
     )
     act(() => {
@@ -50,7 +50,7 @@ describe("util test", () => {
   })
 
   it('should not get current value when unmount component', () => {
-    const { container, unmount } = renderHooks(
+    const { container, unmount } = render(
       () => testHook('hello')
     )
 

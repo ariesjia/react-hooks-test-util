@@ -1,5 +1,5 @@
+import * as React from "react"
 import { act, render } from 'react-testing-library'
-import * as React from "react";
 
 function HookComponent({ hook, updateHook}) {
   updateHook(hook())
@@ -32,7 +32,7 @@ export default (hook: () => any) => {
       hook: {
         get() {
           return currentHook
-        }
+        },
       }
     }),
     rerender() {

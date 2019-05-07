@@ -11,7 +11,10 @@ npm install hooks-test-util
 
 ## Demo
 
-### hook
+### useState Test 
+
+hook
+
 ```javascript
 const testHook = function(text) {
   const [state, setState] = useState({ text })
@@ -24,17 +27,22 @@ const testHook = function(text) {
 }
 ```
 
-### test
+test file
 ```javascript
 import render, { act } from 'hooks-test-util'
 
-const { container } = render(
-  () => testHook('hello')
-)
-expect(container.hook.text).toEqual('hello')
-
-act(() => {
-  container.hook.update('world')
+it('should get current hook value', () => {
+  const { container } = render(
+    () => testHook('hello')
+  )
+  expect(container.hook.text).toEqual('hello')
+  
+  act(() => {
+    container.hook.update('world')
+  })
+  expect(container.hook.text).toEqual('world')
 })
-expect(container.hook.text).toEqual('world')
 ```
+
+useContext demo:  https://github.com/ariesjia/hooks-test-util/blob/master/src/__tests__/context.test.tsx
+useEffect demo:  https://github.com/ariesjia/hooks-test-util/blob/master/src/__tests__/effort.test.tsx

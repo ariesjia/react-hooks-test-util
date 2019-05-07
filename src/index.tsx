@@ -7,7 +7,11 @@ function HookComponent({ hook, updateHook}) {
 }
 
 
-export default (hook: () => any) => {
+interface IOption {
+  parent?: React.ComponentType
+}
+
+export default (hook: () => any, option: IOption = {}) => {
   let currentHook
 
   const updateHook = function(val) {
@@ -15,11 +19,20 @@ export default (hook: () => any) => {
   }
 
   const getComponent = function () {
-    function Component() {
+
+    const ParentComponent = option.parent ? option.parent : (props) => {
       return (
         <>
-          <HookComponent hook={hook} updateHook={updateHook} />
+          {props.children}
         </>
+      )
+    }
+
+    function Component() {
+      return (
+        <ParentComponent>
+          <HookComponent hook={hook} updateHook={updateHook} />
+        </ParentComponent>
       );
     }
     return <Component/>
@@ -43,4 +56,7 @@ export default (hook: () => any) => {
   }
 }
 
-export { act }
+export {
+  act,
+  render as renderComponent,
+}

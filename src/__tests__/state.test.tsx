@@ -13,7 +13,7 @@ const testHook = function(text) {
   }
 }
 
-describe("util test", () => {
+describe("state test", () => {
 
   beforeEach(() => {
     jest.resetModules()

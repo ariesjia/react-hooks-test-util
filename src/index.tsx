@@ -20,13 +20,7 @@ export default (hook: () => any, option: IOption = {}) => {
 
   const getComponent = function () {
 
-    const ParentComponent = option.parent ? option.parent : (props) => {
-      return (
-        <>
-          {props.children}
-        </>
-      )
-    }
+    const ParentComponent = option.parent ? option.parent : React.Fragment
 
     function Component() {
       return (

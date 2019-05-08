@@ -18,10 +18,8 @@ export default (hook: () => any, option: IOption = {}) => {
     currentHook = val
   }
 
-  const getComponent = function () {
-
-    const ParentComponent = option.parent ? option.parent : React.Fragment
-
+  const getComponent = function (options) {
+    const ParentComponent = options.parent ? options.parent : React.Fragment
     function Component() {
       return (
         <ParentComponent>
@@ -32,7 +30,7 @@ export default (hook: () => any, option: IOption = {}) => {
     return <Component/>
   }
 
-  const { container, rerender, unmount } = render(getComponent())
+  const { container, rerender, unmount } = render(getComponent(option))
 
   return {
     container: Object.defineProperties(container, {
@@ -42,9 +40,9 @@ export default (hook: () => any, option: IOption = {}) => {
         },
       }
     }),
-    rerender() {
+    rerender(option: IOption = {} ) {
       currentHook = null
-      rerender(getComponent())
+      rerender(getComponent(option))
     },
     unmount: unmount,
   }

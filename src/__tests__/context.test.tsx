@@ -27,7 +27,7 @@ describe("context test", () => {
     expect(container.hook).toEqual({color: 'red'})
   })
 
-  it('should get provider value when render parent component', () => {
+  it('should get current context value when provider override value', () => {
     const newTheme = {color: 'blue'}
     const { container } = render(
       () => testHook()
@@ -40,6 +40,25 @@ describe("context test", () => {
           )
         }
     })
+    expect(container.hook).toEqual(newTheme)
+  })
+
+  it('should get provider value when rerender component', () => {
+    const newTheme = {color: 'blue'}
+    const { container, rerender } = render(
+      () => testHook()
+    )
+
+    rerender({
+      parent: function(props) {
+        return (
+          <ThemeContextProvider value={newTheme}>
+            {props.children}
+          </ThemeContextProvider>
+        )
+      }
+    })
+
     expect(container.hook).toEqual(newTheme)
   })
 

@@ -44,8 +44,47 @@ it('should get current hook value', () => {
 })
 ```
 
-useContext demo:  
+### useContext Test 
+hook
+
+```javascript
+const ThemeContext = React.createContext({
+  color: 'red'
+})
+
+const testHook = function() {
+  const value = useContext(ThemeContext)
+  return value
+}
+```
+
+test file
+```jsx harmony
+import render, { act } from 'hooks-test-util'
+
+it('should get current context value when provider override value', () => {
+    const newTheme = {color: 'blue'}
+    
+    const { container } = render(
+      () => testHook()
+    , {
+        parent: function(props) {
+          return (
+            <ThemeContext.Provider value={newTheme}>
+              {props.children}
+            </ThemeContext.Provider>
+          )
+        }
+    })
+    
+    expect(container.hook).toEqual(newTheme)
+  })
+```
+
+demo:  
 https://github.com/ariesjia/hooks-test-util/blob/master/src/__tests__/context.test.tsx
 
-useEffect demo:  
+### useEffect Test 
+
+demo:  
 https://github.com/ariesjia/hooks-test-util/blob/master/src/__tests__/effort.test.tsx

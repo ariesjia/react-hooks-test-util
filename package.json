@@ -24,7 +24,8 @@
     "react-testing-library": "^7.0.0"
   },
   "dependencies": {
-    "react-testing-library": "^7.0.0"
+    "react-testing-library": "^7.0.0",
+    "user-event": "^3.0.1"
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",

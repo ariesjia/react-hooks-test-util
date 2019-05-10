@@ -861,7 +861,7 @@ diff@^3.1.0:
   version "3.5.0"
   resolved "http://registry.npm.taobao.org/diff/download/diff-3.5.0.tgz#800c0dd1e0a8bfbc95835c202ad220fe317e5a12"
 
-dom-testing-library@^4.0.0:
+dom-testing-library@4.0.1, dom-testing-library@^4.0.0:
   version "4.0.1"
   resolved "https://registry.npm.taobao.org/dom-testing-library/download/dom-testing-library-4.0.1.tgz#f21ef42aea0bd635969b4227a487e4704dbea735"
   dependencies:
@@ -3193,6 +3193,12 @@ urix@^0.1.0:
 use@^3.1.0:
   version "3.1.1"
   resolved "http://registry.npm.taobao.org/use/download/use-3.1.1.tgz#d50c8cac79a19fbc20f2911f56eb973f4e10070f"
+
+user-event@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.npm.taobao.org/user-event/download/user-event-3.0.1.tgz#f40e835ea71625a5c8dd09983c65f0f34701a12f"
+  dependencies:
+    dom-testing-library "4.0.1"
 
 util-deprecate@~1.0.1:
   version "1.0.2"

@@ -1,17 +1,20 @@
 import * as React from "react"
 import { act, render } from 'react-testing-library'
+import {ReactNode} from "react";
 
-function HookComponent({ hook, updateHook}) {
-  updateHook(hook())
-  return null
+function HookComponent({ hook, updateHook, render}) {
+  const current = hook();
+  updateHook(current)
+  return render ? render({hook: current}) : null
 }
 
 
-interface IOption {
-  parent?: React.ComponentType
+interface IOption<T> {
+  parent?: React.ComponentType,
+  render? ({ hook: T }) : ReactNode,
 }
 
-export default (hook: () => any, option: IOption = {}) => {
+export default function<T>(hook: () => any, option: IOption<T> = {}) {
   let currentHook
 
   const updateHook = function(val) {
@@ -23,7 +26,7 @@ export default (hook: () => any, option: IOption = {}) => {
     function Component() {
       return (
         <ParentComponent>
-          <HookComponent hook={hook} updateHook={updateHook} />
+          <HookComponent hook={hook} updateHook={updateHook} render={option.render} />
         </ParentComponent>
       );
     }
@@ -40,9 +43,12 @@ export default (hook: () => any, option: IOption = {}) => {
         },
       }
     }),
-    rerender(option: IOption = {} ) {
+    rerender(newOption: IOption<T> = {}) {
       currentHook = null
-      rerender(getComponent(option))
+      rerender(getComponent({
+        ...option,
+        ...newOption,
+      }))
     },
     unmount: unmount,
   }

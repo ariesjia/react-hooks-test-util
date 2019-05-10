@@ -16,7 +16,7 @@ npm install hooks-test-util
 hook
 
 ```javascript
-const testHook = function(text) {
+const textHook = function(text) {
   const [state, setState] = useState({ text })
   return {
     text: state.text,
@@ -33,7 +33,7 @@ import render, { act } from 'hooks-test-util'
 
 it('should get current hook value', () => {
   const { container } = render(
-    () => testHook('hello')
+    () => textHook('hello')
   )
   expect(container.hook.text).toEqual('hello')
   
@@ -88,3 +88,29 @@ https://github.com/ariesjia/hooks-test-util/blob/master/src/__tests__/context.te
 
 demo:  
 https://github.com/ariesjia/hooks-test-util/blob/master/src/__tests__/effort.test.tsx
+
+### test with dom
+test file
+
+
+```jsx harmony
+import render, { act } from '../index'
+import { getByTestId } from 'react-testing-library'
+it('should render state value on dome', () => {
+  const { container } = render(
+    () => textHook('hello'),
+    {
+      render({ hook }) {
+        const { text, update } = hook
+        return (
+          <div>
+            <span data-testid="text">{text}</span>
+          </div>
+        )
+      }
+    }
+  )
+  const text = getByTestId(container, 'text')
+  expect(text.textContent).toEqual('hello')
+})
+```

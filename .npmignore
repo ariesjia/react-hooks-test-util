@@ -6,6 +6,7 @@ TODO.md
 src
 .babelrc
 .travis.yml
+.releaserc.yml
 .storybook
 test/unit/coverage/
 test-report.xml

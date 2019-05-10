@@ -6,7 +6,8 @@
   "typings": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest --config test/unit/jest.conf.js"
+    "test": "jest --config test/unit/jest.conf.js",
+    "commit": "npx git-cz"
   },
   "repository": {
     "type": "git",
@@ -28,9 +29,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.3.4",
+    "@commitlint/cli": "^7.6.1",
+    "@commitlint/config-conventional": "^7.6.0",
     "@types/jest": "^24.0.6",
     "@types/react": "^16.8.0",
     "babel-loader": "^8.0.5",
+    "husky": "^2.2.0",
     "jest": "^24.1.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",

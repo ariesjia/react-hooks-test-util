@@ -8,13 +8,17 @@ function HookComponent({ hook, updateHook, render}) {
   return render ? render({hook: current}) : null
 }
 
-
-interface IOption<T> {
-  parent?: React.ComponentType,
+interface Option<T> {
   render? ({ hook: T }) : ReactNode,
 }
 
-export default function<T>(hook: () => any, option: IOption<T> = {}) {
+export interface ReRenderOption {
+  parent?: React.ComponentType
+}
+
+export type RenderOption<T> = Option<T> & ReRenderOption
+
+export default function<T>(hook: () => any, option: RenderOption<T> = {}) {
   let currentHook
 
   const updateHook = function(val) {
@@ -43,7 +47,7 @@ export default function<T>(hook: () => any, option: IOption<T> = {}) {
         },
       }
     }),
-    rerender(newOption: IOption<T> = {}) {
+    rerender(newOption: ReRenderOption = {}) {
       currentHook = null
       rerender(getComponent({
         ...option,

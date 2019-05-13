@@ -21,7 +21,7 @@ describe("state test", () => {
     jest.resetModules()
   })
 
-  it('should render state value on dome', () => {
+  it('should render component to hook component when set \'render\' option', () => {
     const { container } = render(
       () => testHook('hello'),
       {
@@ -64,6 +64,49 @@ describe("state test", () => {
     expect(text.textContent).toEqual(newText)
   })
 
+  it('should rerender component to hook component when set `render` option in rerender method', () => {
+    const { container, rerender } = render(
+      () => testHook('hello'),
+    )
+    rerender({
+      render({ hook }) {
+        const { text } = hook
+        return (
+          <div>
+            <span data-testid="text">{text}</span>
+          </div>
+        )
+      }
+    })
+    const text = getByTestId(container, 'text')
+    expect(text.textContent).toEqual('hello')
+  })
 
-
+  it('should render new component when rerender set new \'render\' option', () => {
+    const { container, rerender } = render(
+      () => testHook('hello'),
+      {
+        render({ hook }) {
+          const { text } = hook
+          return (
+            <div>
+              <span data-testid="text">{text}</span>
+            </div>
+          )
+        }
+      }
+    )
+    rerender({
+      render({ hook }) {
+        const { text } = hook
+        return (
+          <div>
+            <span data-testid="text">{text} world</span>
+          </div>
+        )
+      }
+    })
+    const text = getByTestId(container, 'text')
+    expect(text.textContent).toEqual('hello world')
+  })
 })

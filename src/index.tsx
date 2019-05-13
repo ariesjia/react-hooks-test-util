@@ -10,13 +10,10 @@ function HookComponent({ hook, updateHook, render}) {
 
 interface Option<T> {
   render? ({ hook: T }) : ReactNode,
-}
-
-export interface ReRenderOption {
   parent?: React.ComponentType
 }
 
-export type RenderOption<T> = Option<T> & ReRenderOption
+export type RenderOption<T> = Option<T>
 
 export default function<T>(hook: () => any, option: RenderOption<T> = {}) {
   let currentHook
@@ -25,12 +22,13 @@ export default function<T>(hook: () => any, option: RenderOption<T> = {}) {
     currentHook = val
   }
 
-  const getComponent = function (options) {
-    const ParentComponent = options.parent ? options.parent : React.Fragment
+  const getComponent = function (componentOption) {
+    const ParentComponent = componentOption.parent ? componentOption.parent : React.Fragment
+
     function Component() {
       return (
         <ParentComponent>
-          <HookComponent hook={hook} updateHook={updateHook} render={option.render} />
+          <HookComponent hook={hook} updateHook={updateHook} render={componentOption.render} />
         </ParentComponent>
       );
     }
@@ -47,14 +45,14 @@ export default function<T>(hook: () => any, option: RenderOption<T> = {}) {
         },
       }
     }),
-    rerender(newOption: ReRenderOption = {}) {
+    rerender(newOption: Option<T> = {}) {
       currentHook = null
       rerender(getComponent({
         ...option,
         ...newOption,
       }))
     },
-    unmount: unmount,
+    unmount,
   }
 }
 

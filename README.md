@@ -9,6 +9,23 @@ yarn add hooks-test-util
 npm install hooks-test-util
 ```
 
+## Doc
+
+### render
+* `render(callback, options) => { container, unmount, rerender }`: render method to mount a component which include your custom hook
+
+* `container`: same as `react-testing-library` container, add `hook` field on it, every time visit hook instance should use `container.hook`!!!
+* `unmount()`: method to unmount component
+* `rerender(options)`: method to rerender component
+
+#### callback
+* `() => hook instance`: return your custom hook
+
+#### Options
+
+* `render({ hook }) : ReactNode`: render method to render dom to hook component
+* `parent : React.ComponentType`: parent component, usually used for context test
+
 ## Demo
 
 ### useState Test 

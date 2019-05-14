@@ -1,5 +1,10 @@
 # hooks-test-util
-> make hooks easier to test
+> make React hooks unit test easier to write
+
+[![NPM](https://img.shields.io/npm/v/hooks-test-util.svg)](https://www.npmjs.com/package/hooks-test-util)
+[![Build Status](https://travis-ci.org/ariesjia/react-hooks-test-util.svg?branch=master)](https://travis-ci.org/ariesjia/react-hooks-test-util)
+[![license](https://badgen.net/badge/license/MIT/blue)](https://github.com/ariesjia/react-hooks-test-util/blob/master/LICENSE)
+[![coverage](https://badgen.net/codecov/c/github/ariesjia/react-hooks-test-util)](https://codecov.io/gh/ariesjia/react-hooks-test-util)
 
 ## Install
 ```bash

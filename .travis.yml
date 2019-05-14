@@ -5,6 +5,9 @@ node_js:
 before_script:
   - 'yarn build'
 
+after_success:
+  - 'npx codecov'
+
 deploy:
   provider: script
   skip_cleanup: false

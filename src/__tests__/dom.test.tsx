@@ -64,6 +64,26 @@ describe("state test", () => {
     expect(text.textContent).toEqual(newText)
   })
 
+  it('should unmount render component when excute \'unmount\' methopd', () => {
+    const { container, unmount } = render(
+      () => testHook('hello'),
+      {
+        render({ hook }) {
+          const { text, update } = hook
+          return (
+            <div>
+              <span className="text">{text}</span>
+              <button data-testid="button" onClick={() => update('world')}>update</button>
+            </div>
+          )
+        }
+      }
+    )
+    unmount()
+    const text = container.querySelector('.class')
+    expect(text).toEqual(null)
+  })
+
   it('should rerender component to hook component when set `render` option in rerender method', () => {
     const { container, rerender } = render(
       () => testHook('hello'),

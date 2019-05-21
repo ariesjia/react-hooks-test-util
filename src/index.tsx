@@ -1,5 +1,5 @@
 import * as React from "react"
-import { act, render } from 'react-testing-library'
+import { act, render, cleanup } from 'react-testing-library'
 import {ReactNode} from "react";
 
 function HookComponent({ hook, updateHook, render}) {
@@ -35,9 +35,10 @@ export default function<T>(hook: () => any, option: RenderOption<T> = {}) {
     return <Component/>
   }
 
-  const { container, rerender, unmount } = render(getComponent(option))
-
+  const { container, rerender, unmount, getByTestId, ...others } = render(getComponent(option))
   return {
+    ...others,
+    getByTestId,
     container: Object.defineProperties(container, {
       hook: {
         get() {
@@ -59,4 +60,5 @@ export default function<T>(hook: () => any, option: RenderOption<T> = {}) {
 export {
   act,
   render as renderComponent,
+  cleanup,
 }

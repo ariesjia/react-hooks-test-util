@@ -1,6 +1,5 @@
 import * as React from "react";
-import render, { act } from '../index'
-import { getByTestId } from 'react-testing-library'
+import render, { act, cleanup } from '../index'
 import { useState } from "react"
 import userEvent from 'user-event'
 
@@ -18,11 +17,11 @@ const testHook = function(text) {
 describe("state test", () => {
 
   beforeEach(() => {
-    jest.resetModules()
+    cleanup()
   })
 
   it('should render component to hook component when set \'render\' option', () => {
-    const { container } = render(
+    const { container, getByTestId } = render(
       () => testHook('hello'),
       {
         render({ hook }) {
@@ -36,13 +35,13 @@ describe("state test", () => {
         }
       }
     )
-    const text = getByTestId(container, 'text')
+    const text = getByTestId('text')
     expect(text.textContent).toEqual('hello')
   })
 
   it('should change state when click update button', () => {
     const newText = 'world'
-    const { container } = render(
+    const { container, getByTestId } = render(
       () => testHook('hello'),
       {
         render({ hook }) {
@@ -56,10 +55,10 @@ describe("state test", () => {
         }
       }
     )
-    const text = getByTestId(container, 'text')
+    const text = getByTestId('text')
     expect(text.textContent).toEqual('hello')
     act(() => {
-      userEvent.click(getByTestId(container, 'button'))
+      userEvent.click(getByTestId('button'))
     })
     expect(text.textContent).toEqual(newText)
   })
@@ -85,7 +84,7 @@ describe("state test", () => {
   })
 
   it('should rerender component to hook component when set `render` option in rerender method', () => {
-    const { container, rerender } = render(
+    const { container, rerender, getByTestId } = render(
       () => testHook('hello'),
     )
     rerender({
@@ -98,12 +97,12 @@ describe("state test", () => {
         )
       }
     })
-    const text = getByTestId(container, 'text')
+    const text = getByTestId('text')
     expect(text.textContent).toEqual('hello')
   })
 
   it('should render new component when rerender set new \'render\' option', () => {
-    const { container, rerender } = render(
+    const { container, rerender, getByTestId } = render(
       () => testHook('hello'),
       {
         render({ hook }) {
@@ -126,7 +125,7 @@ describe("state test", () => {
         )
       }
     })
-    const text = getByTestId(container, 'text')
+    const text = getByTestId('text')
     expect(text.textContent).toEqual('hello world')
   })
 })

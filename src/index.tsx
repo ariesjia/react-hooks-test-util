@@ -35,10 +35,10 @@ export default function<T>(hook: () => any, option: RenderOption<T> = {}) {
     return <Component/>
   }
 
-  const { container, rerender, unmount, getByTestId, ...others } = render(getComponent(option))
+  const { container, rerender, unmount, ...others } = render(getComponent(option))
   return {
     ...others,
-    getByTestId,
+    unmount,
     container: Object.defineProperties(container, {
       hook: {
         get() {
@@ -53,12 +53,11 @@ export default function<T>(hook: () => any, option: RenderOption<T> = {}) {
         ...newOption,
       }))
     },
-    unmount,
   }
 }
 
 export {
   act,
-  render as renderComponent,
   cleanup,
+  render as renderComponent,
 }

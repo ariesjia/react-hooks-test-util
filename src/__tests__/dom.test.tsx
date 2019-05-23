@@ -21,7 +21,7 @@ describe("state test", () => {
   })
 
   it('should render component to hook component when set \'render\' option', () => {
-    const { container, getByTestId } = render(
+    const { getByTestId } = render(
       () => testHook('hello'),
       {
         render({ hook }) {
@@ -41,7 +41,7 @@ describe("state test", () => {
 
   it('should change state when click update button', () => {
     const newText = 'world'
-    const { container, getByTestId } = render(
+    const { getByTestId } = render(
       () => testHook('hello'),
       {
         render({ hook }) {
@@ -84,7 +84,7 @@ describe("state test", () => {
   })
 
   it('should rerender component to hook component when set `render` option in rerender method', () => {
-    const { container, rerender, getByTestId } = render(
+    const { rerender, getByTestId } = render(
       () => testHook('hello'),
     )
     rerender({
@@ -102,7 +102,7 @@ describe("state test", () => {
   })
 
   it('should render new component when rerender set new \'render\' option', () => {
-    const { container, rerender, getByTestId } = render(
+    const { rerender, getByTestId } = render(
       () => testHook('hello'),
       {
         render({ hook }) {

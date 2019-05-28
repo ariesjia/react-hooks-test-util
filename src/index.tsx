@@ -15,7 +15,7 @@ interface Option<T> {
 
 export type RenderOption<T> = Option<T>
 
-export default function<T>(hook: () => any, option: RenderOption<T> = {}) {
+const renderHook = function<T>(hook: () => any, option: RenderOption<T> = {}) {
   let currentHook
 
   const updateHook = function(val) {
@@ -56,8 +56,11 @@ export default function<T>(hook: () => any, option: RenderOption<T> = {}) {
   }
 }
 
+export default renderHook
+
 export {
   act,
   cleanup,
+  renderHook as render,
   render as renderComponent,
 }

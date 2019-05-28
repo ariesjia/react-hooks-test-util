@@ -9,9 +9,9 @@
 ## Install
 ```bash
 // use yarn
-yarn add hooks-test-util
+yarn add hooks-test-util -D
 // use npm
-npm install hooks-test-util
+npm install hooks-test-util --dev
 ```
 
 ## Doc

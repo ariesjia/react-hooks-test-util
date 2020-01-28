@@ -1,5 +1,5 @@
 import * as React from "react"
-import { act, render, cleanup } from 'react-testing-library'
+import { act, render, cleanup } from '@testing-library/react'
 import {ReactNode} from "react";
 
 function HookComponent({ hook, updateHook, render}) {
